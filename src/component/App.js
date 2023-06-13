@@ -1,29 +1,26 @@
 import { useState } from 'react';
-// import '../style/App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Mainvideo from './Mainvideo';
 import Navbar from './Navbar';
 import Homepage from './Homepage';
-
+import SignIn from './SignIn-Register/Signin';
+import Register from './SignIn-Register/Register';
 
 function App() {
   const [user, setUser] = useState(false);
-  const [myvideos, setMyvideos] = useState(true);
-  // const [sign, setSigni] = useState(true);
 
   return (
-    <div className="App">
-     
-      <Navbar user={user} />
-      {myvideos ? <Mainvideo /> : <Homepage />}
+    <Router>
+      <div className="App">
+        <Navbar user={user} />
 
-
-      {/* <SignIn sign={sign}/>
-      { sign ? <SignIn/>:<Register/>} */}
-      
-
-      
-      
-    </div>
+        <Routes>
+          <Route path="/" element={user ? <Mainvideo /> : <Homepage />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
