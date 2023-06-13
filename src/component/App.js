@@ -9,10 +9,16 @@ import Register from './SignIn-Register/Register';
 function App() {
   const [user, setUser] = useState(false);
 
+  const handleLogout = () => {
+    // Perform necessary logout logic here
+    // For example, clear user data, update user state, etc.
+    setUser(false);
+  };
+
   return (
     <Router>
       <div className="App">
-        <Navbar user={user} />
+        <Navbar user={user} logout={handleLogout} />
 
         <Routes>
           <Route path="/" element={user ? <Mainvideo /> : <Homepage />} />
